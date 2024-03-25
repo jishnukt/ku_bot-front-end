@@ -1,0 +1,25 @@
+.navbar{
+    width:100%;
+    height:50px;
+    background-color:#00a193;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+}
+.menu-icon{
+    background-color: #00a193;
+}
+.add-icon{
+    background-color: #00a193;
+}
+.name{
+    background-color: #00a193;
+}
+.kubot{
+    background-color: #00a193;
+    color:white;
+    margin: 14px;
+    font-size: 22px;
+}

@@ -1,0 +1,49 @@
+.chat{
+    height: 100%;
+    width: 100%;
+    background-color: #cdfae1;
+    min-height: 75vh;
+    margin-top: 80px;
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: start;
+
+}
+.mytext,.myres{
+    width: 50rem;
+    color: #2c8f82;
+    background-color: white;
+    height: 100%;
+    display: flex;
+    border-radius: 2px;
+}
+.mytext h1,.myres h1{
+    background-color: white;
+    margin:10px 10px;
+    font-size: 1.5vw;
+    margin-left: 6vw;
+    margin-right: 3vw;
+}
+.mytext .user_icon ,.myres .user_icon{
+    background-color: white;
+    margin-top:14px;
+    position: absolute;
+    margin-left: 2vw;
+}
+@media (max-width: 800px) {
+    .mytext,.myres{
+        width: 350px;
+    }
+    .mytext h1,.myres h1{
+        font-size: 1.5vh;
+        margin-left: 40px;
+    }
+    .mytext .user_icon,.myres .user_icon{
+        margin-top: 8px;
+    }
+  }
+
+
