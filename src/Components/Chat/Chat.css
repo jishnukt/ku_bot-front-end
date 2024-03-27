@@ -2,7 +2,6 @@
     height: 100%;
     width: 100%;
     background-color: #cdfae1;
-    min-height: 75vh;
     margin-top: 80px;
     margin-bottom: 100px;
     display: flex;
@@ -64,8 +63,7 @@
     border-radius: 4px;
     cursor: pointer;
     font-weight: bold;
-    /* width: calc(80% - 10px); */
-    /* margin: 5px; */
+    font-size: 0.8rem;
 }
 .s1:hover{
     background-color: rgb(243, 243, 243);
@@ -74,7 +72,7 @@
 
 @media (max-width: 800px) {
     .mytext,.myres{
-        width: 350px;
+        width: 320px;
     }
     .mytext h1,.myres h1{
         font-size: 1.5vh;
@@ -83,9 +81,22 @@
     .mytext .user_icon,.myres .user_icon{
         margin-top: 8px;
     }
+    .suggestion{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .s1{
+        height: 40px;
+        width: 100%;
+    }
+    .initial h2{
+        font-size: 18px;
+    }
   }
 .myres{
-    opacity: 0;
+    display: none;
 }
 
 

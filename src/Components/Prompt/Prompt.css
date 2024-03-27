@@ -7,12 +7,10 @@
     width: 100%;
     height: 80px;
   }
-  
-  .prompt-container {
+  .prompt-container 
+  {
     position: relative;
-    
-  }
-  
+  } 
   .search {
     width: 45rem;
     min-height: 2.5rem;
@@ -26,9 +24,13 @@
     font-size:18px;
     font-weight: bold;
   }
-  input[type="text"] {
+  .search::placeholder{
+    color:#2c8f82;
+  }
+  input[type="text"] 
+  {
     padding: 0px 40px; 
-}  
+  }  
   .icon-container {
     position: absolute;
     top: 55%;
@@ -38,6 +40,6 @@
   }
   @media (max-width: 800px) {
     .search{
-        width: 350px;
+        width: 260px;
     }
   }
