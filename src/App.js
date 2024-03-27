@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "./App.css"
+import './App.css'
 import Navbar from './Components/Navbar/Navbar';
 import Chat from './Components/Chat/Chat';
 import Prompt from './Components/Prompt/Prompt';
@@ -25,8 +25,8 @@ function App() {
   return (
     <div className="App">
       <Navbar toggleSidebar={toggleSidebar} />
-      {sidebarVisible && <Sidebar />}
-      <Chat messages={messages} showInitialDiv={showInitialDiv} /> {}
+      <Sidebar isOpen={sidebarVisible} /> {/* Pass sidebar visibility state */}
+      <Chat messages={messages} showInitialDiv={showInitialDiv} />
       <Prompt onMessageSubmit={handleMessageSubmit} hideInitialDiv={hideInitialDiv} />
     </div>
   );

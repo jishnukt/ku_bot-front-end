@@ -11,6 +11,12 @@
 .menu-icon{
     background-color: #00a193;
 }
+.menu-icon:hover{
+    background-color:#0c857b9f ;
+}
+.add-icon:hover{
+        background-color:#0c857b9f ;
+}
 .add-icon{
     background-color: #00a193;
 }
