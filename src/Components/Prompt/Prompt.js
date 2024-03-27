@@ -1,9 +1,8 @@
-// Prompt.js
 import React, { useState } from 'react';
 import { SquareArrowUp } from 'lucide-react';
 import "./Prompt.css";
 
-function Prompt({ onMessageSubmit }) {
+function Prompt({ onMessageSubmit, hideInitialDiv }) {
   const [inputText, setInputText] = useState('');
 
   const handleInputChange = (event) => {
@@ -14,6 +13,7 @@ function Prompt({ onMessageSubmit }) {
     if (event.key === 'Enter' && inputText.trim() !== '') {
       onMessageSubmit(inputText);
       setInputText('');
+      hideInitialDiv(); 
     }
   };
 
@@ -21,6 +21,7 @@ function Prompt({ onMessageSubmit }) {
     if (inputText.trim() !== '') {
       onMessageSubmit(inputText);
       setInputText('');
+      hideInitialDiv(); 
     }
   };
 
