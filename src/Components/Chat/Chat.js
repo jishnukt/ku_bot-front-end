@@ -1,8 +1,10 @@
-import React, { useRef, useEffect } from 'react';
-import { User, Bot } from 'lucide-react'; 
+import React, { useRef, useEffect, useState } from 'react';
+import { User, Bot } from 'lucide-react';
 import "./Chat.css"
 
-function Chat({ messages, showInitialDiv }) { 
+function Chat({ messages, showInitialDiv, generatedText }) {
+  const [generatedHistory, setGeneratedHistory] = useState([]);
+
   const chatEndRef = useRef(null);
 
   useEffect(() => {
@@ -11,11 +13,17 @@ function Chat({ messages, showInitialDiv }) {
     }
   }, [messages]);
 
+  useEffect(() => {
+    if (generatedText) {
+      setGeneratedHistory(prevHistory => [...prevHistory, generatedText]);
+    }
+  }, [generatedText]);
+
   return (
     <div className='chat'>
-      {showInitialDiv && ( 
+      {showInitialDiv && (
         <div className='initial'>
-          <Bot className='initial_icon' style={{ width: '100px', height: '100px'}}/>
+          <Bot className='initial_icon' style={{ width: '100px', height: '100px' }} />
           <h2>How can I help you today?</h2>
           <div className='suggestion'>
             <div className='s1'>Kannur University located</div>
@@ -26,15 +34,20 @@ function Chat({ messages, showInitialDiv }) {
         </div>
       )}
       {messages.map((message, index) => (
-        <div className='mytext' key={index}>
-          <User className='user_icon' style={{ width: '18px', height: '18px'}}/>
-          <h1 className='text1'>{message}</h1>
-        </div>
+        <React.Fragment key={index}>
+          <div className='mytext'>
+            <User className='user_icon' style={{ width: '18px', height: '18px' }} />
+            <h1 className='text1'>{message}</h1>
+          </div>
+          {generatedHistory[index] && (
+            <div className='myres'>
+              <Bot className='user_icon' style={{ width: '18px', height: '18px' }} />
+              <h1 className='res1'>{generatedHistory[index]}</h1>
+            </div>
+          )}
+        </React.Fragment>
       ))}
-      <div className='myres'>
-        <Bot className='user_icon' style={{ width: '18px', height: '18px'}}/>
-        <h1 className='res1'></h1>
-      </div>
+
       <div ref={chatEndRef}></div>
     </div>
   );

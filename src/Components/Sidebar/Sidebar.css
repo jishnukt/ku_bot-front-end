@@ -12,8 +12,8 @@
     border-radius: 4px;
     left: -250px; 
     transition: left 0.4s ease; 
+    user-select: none;
   }
-  
   .sidebar.open {
     left: 0;
   }

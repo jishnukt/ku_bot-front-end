@@ -1,4 +1,4 @@
-.chat{
+.chat {
     height: 100%;
     width: 100%;
     background-color: #cdfae1;
@@ -11,28 +11,38 @@
     justify-content: start;
 
 }
-.mytext,.myres{
+
+.mytext,
+.myres {
     width: 50rem;
     color: #2c8f82;
     background-color: white;
     height: 100%;
     display: flex;
     border-radius: 2px;
+    /* display:flex; */
+    /* flex-direction: column; */
+    gap: 20px;
 }
-.mytext h1,.myres h1{
+
+.mytext h1,
+.myres h1 {
     background-color: white;
-    margin:10px 10px;
+    margin: 10px 10px;
     font-size: 1.5vw;
     margin-left: 6vw;
     margin-right: 3vw;
 }
-.mytext .user_icon ,.myres .user_icon{
+
+.mytext .user_icon,
+.myres .user_icon {
     background-color: white;
-    margin-top:14px;
+    margin-top: 14px;
     position: absolute;
     margin-left: 2vw;
 }
-.initial{
+
+.initial {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -41,20 +51,23 @@
     gap: 30px;
     color: #00a193;
     width: 70%;
+    user-select: none;
 }
-.suggestion{
+
+.suggestion {
     display: flex;
-    flex-direction: row ;
-    gap:20px;
+    flex-direction: row;
+    gap: 20px;
     justify-content: center;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
     width: 100%;
     margin-top: 10px;
     transition: transform 0.3s ease-in-out;
 
 }
-.s1{
-    width:40%;
+
+.s1 {
+    width: 40%;
     background-color: white;
     height: 80px;
     display: flex;
@@ -65,38 +78,47 @@
     font-weight: bold;
     font-size: 0.8rem;
 }
-.s1:hover{
+
+.s1:hover {
     background-color: rgb(243, 243, 243);
     transform: scale(1.05);
 }
 
 @media (max-width: 800px) {
-    .mytext,.myres{
+
+    .mytext,
+    .myres {
         width: 320px;
     }
-    .mytext h1,.myres h1{
+
+    .mytext h1,
+    .myres h1 {
         font-size: 1.5vh;
         margin-left: 40px;
     }
-    .mytext .user_icon,.myres .user_icon{
+
+    .mytext .user_icon,
+    .myres .user_icon {
         margin-top: 8px;
     }
-    .suggestion{
+
+    .suggestion {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
-    .s1{
+
+    .s1 {
         height: 40px;
         width: 100%;
     }
-    .initial h2{
+
+    .initial h2 {
         font-size: 18px;
     }
-  }
-.myres{
-    display: none;
 }
 
-
+.myres {
+    /* display: none; */
+}

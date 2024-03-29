@@ -22,6 +22,7 @@
 }
 .name{
     background-color: #00a193;
+    user-select: none;
 }
 .kubot{
     background-color: #00a193;
