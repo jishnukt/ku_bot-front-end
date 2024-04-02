@@ -12,6 +12,8 @@ function Chat({ messages, showInitialDiv, generatedText }) {
       chatEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
+  
+  
 
   useEffect(() => {
     if (generatedText) {
@@ -26,10 +28,10 @@ function Chat({ messages, showInitialDiv, generatedText }) {
           <Bot className='initial_icon' style={{ width: '100px', height: '100px' }} />
           <h2>How can I help you today?</h2>
           <div className='suggestion'>
-            <div className='s1'>Kannur University located</div>
-            <div className='s1'>Courses offered by University</div>
-            <div className='s1'>Calender Year</div>
-            <div className='s1'>Fees Structures</div>
+            <div className='s1' id='first'>Kannur University located</div>
+            <div className='s1' id='second'>Courses offered by University</div>
+            <div className='s1' id='third'>Calender Year</div>
+            <div className='s1' id='fourth'>Fees Structures</div>
           </div>
         </div>
       )}

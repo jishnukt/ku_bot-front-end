@@ -1,34 +1,52 @@
 .sidebar {
-    background-color: #00a193;
-    color: blue;
-    margin-top: 48px;
-    min-height: 60vh;
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    width: 15rem;
-    z-index: 3000;
-    border-radius: 4px;
-    left: -250px; 
-    transition: left 0.4s ease; 
-    user-select: none;
-  }
-  .sidebar.open {
-    left: 0;
-  }
-  
-  .sidebar * {
-    background-color: #00a193;
-    margin-left: 15px;
-    margin-bottom: 15px;
-    color: white;
-  }
-  
-  .settings,
-  .darkmode {
-    display: flex;
-    align-items: center;
-    font-size: 20px;
-  }
-  
+  background-color: #00a193;
+  color: blue;
+  margin-top: 48px;
+  min-height: 60vh;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 15rem;
+  z-index: 3000;
+  border-radius: 4px;
+  left: -250px;
+  transition: left 0.4s ease;
+  user-select: none;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar * {
+  background-color: #00a193;
+  /* margin-left: 15px; */
+  margin-bottom: 15px;
+  color: #FFFAFA;
+}
+
+.settings,
+.darkmode {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+}
+
+.darkmode * {
+  margin-left: 15px;
+}
+
+.settings * {
+  margin-left: 15px;
+}
+
+.darkmode:hover {
+  transform: scale(1);
+  font-weight: bold;
+}
+
+.settings:hover {
+  transform: scale(1);
+  font-weight: bold;
+}

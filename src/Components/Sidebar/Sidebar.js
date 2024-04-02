@@ -8,11 +8,11 @@ function Sidebar({ isOpen }) {
     <div className={`sidebar ${isOpen ? 'open' : ''}`}>
       <div className='darkmode'>
         <Moon />
-        <p>Dark Mode</p>
+        <p className='dm'>Dark Mode</p>
       </div>
       <div className='settings'>
         <Cog />
-        <p>Settings</p>
+        <p className='set'>Settings</p>
       </div>
     </div>
   );

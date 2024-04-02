@@ -1,32 +1,38 @@
-.navbar{
-    width:100%;
-    height:50px;
-    background-color:#00a193;
+.navbar {
+    width: 100%;
+    height: 50px;
+    background-color: #00a193;
     position: fixed;
     z-index: 1000;
     top: 0;
     display: flex;
     justify-content: space-between;
 }
-.menu-icon{
+
+.menu-icon {
     background-color: #00a193;
 }
-.menu-icon:hover{
-    background-color:#0c857b9f ;
+
+.menu-icon:hover {
+    background-color: #0c857b9f;
 }
-.add-icon:hover{
-        background-color:#0c857b9f ;
+
+.add-icon:hover {
+    background-color: #0c857b9f;
 }
-.add-icon{
+
+.add-icon {
     background-color: #00a193;
 }
-.name{
+
+.name {
     background-color: #00a193;
     user-select: none;
 }
-.kubot{
-    background-color: #00a193;
-    color:white;
+
+.kubot {
+    background-color: transparent;
+    color: #FFFAFA;
     margin: 14px;
     font-size: 22px;
 }
