@@ -27,7 +27,8 @@
 }
 
 .settings,
-.darkmode {
+.darkmode,
+.loginorsignup {
   display: flex;
   align-items: center;
   font-size: 20px;
@@ -41,12 +42,24 @@
   margin-left: 15px;
 }
 
+.usericon1,
+.set {
+  margin-left: 15px;
+
+}
+
+
 .darkmode:hover {
   transform: scale(1);
   font-weight: bold;
 }
 
 .settings:hover {
+  transform: scale(1);
+  font-weight: bold;
+}
+
+.loginorsignup:hover {
   transform: scale(1);
   font-weight: bold;
 }

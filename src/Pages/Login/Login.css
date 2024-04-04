@@ -1,0 +1,48 @@
+.box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 120px;
+    height: 100%;
+    width: 100%;
+    /* background-color: red; */
+    gap:20px
+}
+.bot{
+    height: 10rem;
+    width: 10rem;
+    background: none;
+    color:#00a193;
+}
+.box input{
+    width:15rem;
+    height: 2rem;
+    border-radius: 4px;
+    padding: 5px 30px;
+    border:solid 2px #00a193;
+    background-color: white;
+    font-weight: bold;
+    color:#00a193;
+}
+.box button{
+    width: 10rem;
+    height: 2rem;
+    margin-top: 10px;
+    border-radius: 4px;
+    padding: 0px 40px;
+    border:solid 2px #00a193;
+    color:white;
+    background-color: #00a193;
+    font-weight: bold;
+
+}
+.loginbtn:hover{
+    transform: scale(1.05);
+}
+input::placeholder {
+    color: #2c8f82;
+  }
+.box p{
+    color:#00a193;
+}

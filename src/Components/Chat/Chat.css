@@ -20,8 +20,8 @@
     height: 100%;
     display: flex;
     /* border-radius: 2px; */
-    border-radius:10px 100px/120px 100px;
-    box-shadow: 0px 0px 2px #00a193;
+    border-radius:1px 4px 1px 15px;
+    box-shadow:0px 2px 2px #00a193;
     /* display:flex; */
     /* flex-direction: column; */
     gap: 20px;
@@ -79,7 +79,7 @@
     cursor: pointer;
     font-weight: bold;
     font-size: 0.8rem;
-    box-shadow: 0px 0px 2px #00a193;
+    box-shadow: 0px 2px 3px #00a193;
 
 }
 
