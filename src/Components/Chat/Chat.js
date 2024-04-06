@@ -1,9 +1,12 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { User, Bot } from 'lucide-react';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css'
 import "./Chat.css"
 
-function Chat({ messages, showInitialDiv, generatedText }) {
+function Chat({ messages, showInitialDiv, generatedText,onMessageSubmit, hideInitialDiv }) {
   const [generatedHistory, setGeneratedHistory] = useState([]);
+  const [isLoading, setIsLoading] = useState(false); // New loading state
 
   const chatEndRef = useRef(null);
 
@@ -12,26 +15,32 @@ function Chat({ messages, showInitialDiv, generatedText }) {
       chatEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
-  
-  
 
   useEffect(() => {
     if (generatedText) {
+      setIsLoading(false); // Turn off loading when text is received
       setGeneratedHistory(prevHistory => [...prevHistory, generatedText]);
     }
   }, [generatedText]);
 
+  useEffect(() => {
+    if (messages.length > generatedHistory.length) {
+      setIsLoading(true); // Set loading to true if there are pending messages
+    }
+  }, [messages, generatedHistory]);
+
   return (
     <div className='chat'>
+
       {showInitialDiv && (
         <div className='initial'>
           <Bot className='initial_icon' style={{ width: '100px', height: '100px' }} />
           <h2>How can I help you today?</h2>
           <div className='suggestion'>
-            <div className='s1' id='first'>Kannur University located</div>
-            <div className='s1' id='second'>Courses offered by University</div>
-            <div className='s1' id='third'>Calender Year</div>
-            <div className='s1' id='fourth'>Fees Structures</div>
+            <div className='s1' onClick={() => { onMessageSubmit('Kannur University location');hideInitialDiv();}}>Kannur University located</div>
+            <div className='s1' onClick={() => { onMessageSubmit('Courses offered by Kannur University');hideInitialDiv();}}>Courses offered by University</div>
+            <div className='s1' onClick={() => { onMessageSubmit('Examination Details of Kannur University');hideInitialDiv();}}>Examination Details of Kannur University</div>
+            <div className='s1' onClick={() => { onMessageSubmit('Registration Details of KU');hideInitialDiv();}}>Registration Details of KU</div>
           </div>
         </div>
       )}
@@ -41,6 +50,7 @@ function Chat({ messages, showInitialDiv, generatedText }) {
             <User className='user_icon' style={{ width: '18px', height: '18px' }} />
             <h1 className='text1'>{message}</h1>
           </div>
+          
           {generatedHistory[index] && (
             <div className='myres'>
               <Bot className='user_icon' style={{ width: '18px', height: '18px' }} />
@@ -49,7 +59,15 @@ function Chat({ messages, showInitialDiv, generatedText }) {
           )}
         </React.Fragment>
       ))}
-
+            {isLoading && (
+        <div className="loader">
+          <SkeletonTheme className="skelton" baseColor="white" highlightColor="#35ac9c" height={100} >
+            <p>
+              <Skeleton className="skelton" count={1} />
+            </p>
+          </SkeletonTheme>
+        </div>
+      )}
       <div ref={chatEndRef}></div>
     </div>
   );

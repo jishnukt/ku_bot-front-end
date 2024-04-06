@@ -1,5 +1,5 @@
 import React from 'react'
-import { User, Bot } from 'lucide-react';
+import { Bot } from 'lucide-react';
 import { Link } from "react-router-dom";
 import './Signup.css'
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import './App.css';
 import Navbar from '../../Components/Navbar/Navbar';
 import Chat from '../../Components/Chat/Chat';
@@ -45,8 +45,8 @@ function App() {
   return (
     <div className="App">
       <Navbar toggleSidebar={toggleSidebar} />
-      <Sidebar isOpen={sidebarVisible} />
-      <Chat messages={messages} showInitialDiv={showInitialDiv} generatedText={generatedText} />
+      <Sidebar isOpen={sidebarVisible} messages={messages} onMessageSubmit={handleMessageSubmit} toggleSidebar={toggleSidebar} />
+      <Chat messages={messages} showInitialDiv={showInitialDiv} generatedText={generatedText} onMessageSubmit={handleMessageSubmit} hideInitialDiv={hideInitialDiv} />
       <Prompt onMessageSubmit={handleMessageSubmit} hideInitialDiv={hideInitialDiv} />
     </div>
   );
