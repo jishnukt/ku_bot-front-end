@@ -1,6 +1,6 @@
 .navbar {
     width: 100%;
-    height: 50px;
+    height: 60px;
     /* background-color: #00a193; */
     background-image: linear-gradient(to right, #2c8f82, #35ac9c, #35ac9c, #2c8f82);
     position: fixed;
@@ -8,6 +8,7 @@
     top: 0;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .menu-icon {

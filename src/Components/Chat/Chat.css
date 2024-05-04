@@ -20,16 +20,19 @@
     height: 100%;
     display: flex;
     border-radius: 5px;
-    box-shadow: 1px 2px 2px #00a193;
+    /* box-shadow: 1px 2px 1px #00a193; */
+    border: #00a193 solid 1px;
     gap: 20px;
 }
 
 .mytext h1,
 .myres h1 {
-    background-color: #FFFAFA;
+    background-color:transparent;
     margin: 10px 10px;
-    word-spacing: 3px;
-    font-size: 1.3vw;
+    word-spacing: 2px;
+    letter-spacing: 1px;
+    line-height: 2rem;
+    font-size: 1rem;
     margin-left: 6vw;
     margin-right: 3vw;
 }
@@ -109,13 +112,15 @@
 
     .mytext h1,
     .myres h1 {
-        font-size: 1.5vh;
+        font-size: 0.8rem;
         margin-left: 40px;
+        line-height: 1.4rem;
+
     }
 
     .mytext .user_icon,
     .myres .user_icon {
-        margin-top: 8px;
+        margin-top: 12px;
     }
 
     .suggestion {

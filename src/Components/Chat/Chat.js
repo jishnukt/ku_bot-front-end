@@ -6,7 +6,7 @@ import "./Chat.css"
 
 function Chat({ messages, showInitialDiv, generatedText,onMessageSubmit, hideInitialDiv }) {
   const [generatedHistory, setGeneratedHistory] = useState([]);
-  const [isLoading, setIsLoading] = useState(false); // New loading state
+  const [isLoading, setIsLoading] = useState(false); 
 
   const chatEndRef = useRef(null);
 
@@ -14,11 +14,11 @@ function Chat({ messages, showInitialDiv, generatedText,onMessageSubmit, hideIni
     if (chatEndRef.current) {
       chatEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [messages]);
+  }, [messages,generatedText]);
 
   useEffect(() => {
     if (generatedText) {
-      setIsLoading(false); // Turn off loading when text is received
+      setIsLoading(false);
       setGeneratedHistory(prevHistory => [...prevHistory, generatedText]);
     }
   }, [generatedText]);
