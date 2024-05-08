@@ -4,17 +4,17 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
 import "./Chat.css"
 
-function Chat({ messages, showInitialDiv, generatedText,onMessageSubmit, hideInitialDiv }) {
+function Chat({ messages, showInitialDiv, generatedText, onMessageSubmit, hideInitialDiv }) {
   const [generatedHistory, setGeneratedHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(false); 
 
   const chatEndRef = useRef(null);
-
+  
   useEffect(() => {
     if (chatEndRef.current) {
       chatEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [messages,generatedText]);
+  }, [messages, generatedText]);
 
   useEffect(() => {
     if (generatedText) {
@@ -25,9 +25,20 @@ function Chat({ messages, showInitialDiv, generatedText,onMessageSubmit, hideIni
 
   useEffect(() => {
     if (messages.length > generatedHistory.length) {
-      setIsLoading(true); // Set loading to true if there are pending messages
+      setIsLoading(true); 
     }
   }, [messages, generatedHistory]);
+
+function formatMessage(message) {
+  const withoutAsterisks = message.replace(/\*\*/g, '');
+  return withoutAsterisks.split('\n').map((line, index) => (
+    <React.Fragment key={index}>
+      {line}
+      <br />
+    </React.Fragment>
+  ));
+}
+
 
   return (
     <div className='chat'>
@@ -54,12 +65,12 @@ function Chat({ messages, showInitialDiv, generatedText,onMessageSubmit, hideIni
           {generatedHistory[index] && (
             <div className='myres'>
               <Bot className='user_icon' style={{ width: '18px', height: '18px' }} />
-              <h1 className='res1'>{generatedHistory[index]}</h1>
+              <h1 className='res1'>{formatMessage(generatedHistory[index])}</h1>
             </div>
           )}
         </React.Fragment>
       ))}
-            {isLoading && (
+      {isLoading && (
         <div className="loader">
           <SkeletonTheme className="skelton" baseColor="white" highlightColor="#35ac9c" height={100} >
             <p>
