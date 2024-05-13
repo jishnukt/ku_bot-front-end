@@ -20,7 +20,7 @@ function App() {
   const handleMessageSubmit = async (text) => {
     setMessages([...messages, text]);
     try {
-      const response = await fetch('http://192.168.18.14:3003/api/getGeneratedText', {
+      const response = await fetch('http://localhost:3003/api/getGeneratedText', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -4,6 +4,7 @@ import './index.css';
 import App from './Pages/App/App';
 import Login from './Pages/Login/Login'
 import Signup from './Pages/Signup/Signup'
+import Admin from './Pages/Admin/Admin';
 import reportWebVitals from './reportWebVitals';
 import {createBrowserRouter,RouterProvider,} from "react-router-dom";
 
@@ -16,9 +17,14 @@ const router = createBrowserRouter([
   {
     path: "login",
     element:<Login/>,
-  },  {
+  },  
+  {
     path: "signup",
     element:<Signup/>,
+  },
+  {
+    path: "admin",
+    element:<Admin/>,
   },
 ]);
 
