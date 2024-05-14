@@ -1,41 +1,3 @@
-// import React,{useState} from 'react'
-// import { Bot } from 'lucide-react';
-// import { Link } from "react-router-dom";
-// import { useNavigate } from 'react-router-dom';
-// import axios from 'axios'
-// import './Login.css'
-
-// function Login() {
-
-//   const [email, setEmail] = useState()
-//   const [password, setPassword] = useState()
-//   // const navigate = useNavigate()
-
-//   // const handleSubmit = (e) => {
-//   //   e.preventDefault()
-//   //   axios.post('http://localhost:3001/login', {email, password })
-//   //     .then(result => {
-//   //       console.log(result)
-//   //       if (result.data === "Success") {
-//   //         navigate('/')
-//   //       }
-//   //     })
-//   //     .catch(err => console.log(err))
-//   // }
-
-//   return (
-//     <form className='box'>
-//       <Bot className='bot'></Bot>
-//       <input placeholder='Email Address' onChange={(e) => setEmail(e.target.value)}></input>
-//       <input placeholder='Password' onChange={(e) => setPassword(e.target.value)}></input>
-//       <button className='loginbtn'>Sign In</button>
-//       <p>Don't have an account? <Link to='/Signup' style={{ color: '#00a193', fontWeight: 'bold' }}>Register</Link></p>
-//     </form>
-//   )
-// }
-
-// export default Login
-
 import React, { useState } from 'react';
 import { Bot } from 'lucide-react';
 import { Link} from "react-router-dom";
@@ -53,7 +15,11 @@ function Login() {
     try {
       const response = await axios.post('http://127.0.0.1:3003/api/login', { email, password });
       console.log(response.data); 
-      navigate('/');
+      if (response.data.user.type === 'User') {
+        navigate('/');
+      } else if (response.data.user.type === 'Admin') {
+        navigate('/admin');
+      }    
     } catch (error) {
       console.error('Login failed:', error);
     }

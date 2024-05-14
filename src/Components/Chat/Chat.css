@@ -13,21 +13,47 @@
 }
 
 .mytext,
-.myres {
+.response {
     width: 50rem;
     color: #2c8f82;
     background-color: #FFFAFA;
     height: 100%;
     display: flex;
     border-radius: 5px;
-    /* box-shadow: 1px 2px 1px #00a193; */
+    box-shadow: 1px 2px 2px #00a193;
     border: #00a193 solid 1.5px;
     gap: 20px;
+    flex-direction: column;
+}
+
+.myres {
+    background-color: transparent;
+}
+
+.thumbs {
+    background-color: transparent;
+    display: flex;
+    margin-left: 6vw;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+.down:active {
+    fill: #00a193;
+}
+
+.up:active {
+    fill: #00a193;
+}
+
+.copy:active {
+    fill: #00a193;
 }
 
 .mytext h1,
 .myres h1 {
-    background-color:transparent;
+    background-color: transparent;
     margin: 10px 10px;
     word-spacing: 2px;
     letter-spacing: 1px;
@@ -94,20 +120,41 @@
 .suggestion:hover {
     transform: scale(1.05);
 }
-.skelton{
+
+.skelton {
     width: 50rem;
     margin-bottom: 10px;
+}
+
+.up,
+.down,
+.copy {
+    background-color: transparent;
+    height: 18px;
+    width: 18px;
+
+}
+
+.up:hover,
+.down:hover,
+.copy:hover {
+    transform: scale(1.2);
 }
 
 
 @media (max-width: 800px) {
 
     .mytext,
-    .myres {
+    .response {
         width: 320px;
     }
-    .skelton{
-        width:320px;
+
+    .skelton {
+        width: 320px;
+    }
+
+    .thumbs {
+        margin-left: 40px;
     }
 
     .mytext h1,
@@ -121,6 +168,7 @@
     .mytext .user_icon,
     .myres .user_icon {
         margin-top: 12px;
+        margin-left: 10px;
     }
 
     .suggestion {

@@ -52,7 +52,8 @@ function Signup() {
     firstName: '',
     lastName: '',
     email: '',
-    password: ''
+    password: '',
+    userType: 'User'
   });
 
   const handleChange = (e) => {

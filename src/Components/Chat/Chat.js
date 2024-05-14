@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { User, Bot } from 'lucide-react';
+import { User, Bot,ThumbsUp,ThumbsDown,Copy } from 'lucide-react';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
 import "./Chat.css"
@@ -7,6 +7,8 @@ import "./Chat.css"
 function Chat({ messages, showInitialDiv, generatedText, onMessageSubmit, hideInitialDiv }) {
   const [generatedHistory, setGeneratedHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(false); 
+  // const [isClicked, setIsClicked] = useState(false);
+
 
   const chatEndRef = useRef(null);
   
@@ -39,6 +41,54 @@ function formatMessage(message) {
   ));
 }
 
+const handleThumbsUp = (index) => {
+  const liked = generatedHistory[index];
+  fetch('http://127.0.0.1:3003/api/liked', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ liked }),
+  })
+    .then(response => {
+      if (response.ok) {
+        console.log(' sent successfully');
+      } else {
+        console.error('Error sending Like:', response.statusText);
+      }
+    })
+    .catch(error => {
+      console.error('Error sending Like:', error);
+    });
+};
+
+const handleThumbsDown = (index) => {
+  const disliked = generatedHistory[index];
+  fetch('http://127.0.0.1:3003/api/disliked', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ disliked }),
+  })
+    .then(response => {
+      if (response.ok) {
+        console.log('Dislike sent successfully');
+      } else {
+        console.error('Error sending Disklike:', response.statusText);
+      }
+    })
+    .catch(error => {
+      console.error('Error sending Dislike:', error);
+    });
+};
+
+const handleCopy = (index) => {
+  const textToCopy = generatedHistory[index];
+  navigator.clipboard.writeText(textToCopy)
+};
+
+
 
   return (
     <div className='chat'>
@@ -63,9 +113,16 @@ function formatMessage(message) {
           </div>
           
           {generatedHistory[index] && (
-            <div className='myres'>
-              <Bot className='user_icon' style={{ width: '18px', height: '18px' }} />
-              <h1 className='res1'>{formatMessage(generatedHistory[index])}</h1>
+            <div className='response'>
+              <div className='myres'>
+                <Bot className='user_icon' style={{ width: '18px', height: '18px' }} />
+                <h1 className='res1'>{formatMessage(generatedHistory[index])}</h1>
+              </div>
+              <div className='thumbs'>
+                <ThumbsUp className='up' onClick={() => handleThumbsUp(index)}/>
+                <Copy className='copy' onClick={() => handleCopy(index)}/>
+                <ThumbsDown className='down' onClick={() => handleThumbsDown(index)}/>
+              </div>
             </div>
           )}
         </React.Fragment>

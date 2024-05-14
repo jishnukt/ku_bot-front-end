@@ -27,7 +27,9 @@
     font-weight: bold;
     color: #00a193;
 }
-
+.hidden{
+    display: none;
+}
 .box2 button {
     width: 10rem;
     height: 2rem;
