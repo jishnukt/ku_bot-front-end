@@ -32,8 +32,10 @@ function Chat({ messages, showInitialDiv, generatedText, onMessageSubmit, hideIn
   }, [messages, generatedHistory]);
 
 function formatMessage(message) {
-  const withoutAsterisks = message.replace(/\*\*/g, '');
-  return withoutAsterisks.split('\n').map((line, index) => (
+    const withoutAsterisks = message.replace(/\*\*/g, '');
+    // const withoutBrackets = withoutAsterisks.replace(/\【.*?\】/g, '');
+    const withoutBrackets = withoutAsterisks.replace(/【.*?】/g, '');
+    return withoutBrackets.split('\n').map((line, index) => (
     <React.Fragment key={index}>
       {line}
       <br />
@@ -43,12 +45,13 @@ function formatMessage(message) {
 
 const handleThumbsUp = (index) => {
   const liked = generatedHistory[index];
+  const prompt = messages[index];
   fetch('http://127.0.0.1:3003/api/liked', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ liked }),
+    body: JSON.stringify({ liked,prompt }),
   })
     .then(response => {
       if (response.ok) {
@@ -64,12 +67,13 @@ const handleThumbsUp = (index) => {
 
 const handleThumbsDown = (index) => {
   const disliked = generatedHistory[index];
+  const prompt = messages[index];
   fetch('http://127.0.0.1:3003/api/disliked', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ disliked }),
+    body: JSON.stringify({ disliked,prompt }),
   })
     .then(response => {
       if (response.ok) {
