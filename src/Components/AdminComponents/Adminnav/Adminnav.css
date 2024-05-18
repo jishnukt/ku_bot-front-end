@@ -1,0 +1,25 @@
+.navbar2 {
+    width: 100%;
+    height: 60px;
+    /* background-color: #00a193; */
+    background-image: linear-gradient(to right, #2c8f82, #35ac9c, #35ac9c, #2c8f82);
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-icon2 {
+    background-color: #2f998b;
+    /* color:#00a193; */
+    color: white;
+}
+
+.menu-icon2:hover {
+    background-color: #007c72;
+    color: white;
+}
+
+

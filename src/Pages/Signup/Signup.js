@@ -63,7 +63,7 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://127.0.0.1:3003/api/signup', formData);
+      const response = await axios.post('http://192.168.18.14:3003/api/signup', formData);
       console.log(response.data); 
       navigate('/login');
     } catch (error) {

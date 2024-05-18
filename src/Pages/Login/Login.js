@@ -8,17 +8,18 @@ import './Login.css';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://127.0.0.1:3003/api/login', { email, password });
-      console.log(response.data); 
+      const response = await axios.post('http://192.168.18.14:3003/api/login', { email, password });
+      console.log(response.data.user.fullName); 
       if (response.data.user.type === 'User') {
-        navigate('/');
+        navigate('/',{ state: { email } });
       } else if (response.data.user.type === 'Admin') {
-        navigate('/admin');
+        navigate('/admin/chat');
       }    
     } catch (error) {
       console.error('Login failed:', error);

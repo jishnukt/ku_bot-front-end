@@ -1,0 +1,74 @@
+.sidebar2 {
+    background-image: linear-gradient(to right, #2c8f82, #35ac9c, #35ac9c, #2c8f82);
+    margin-top: 48px;
+    height: 100%;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 15rem;
+    z-index: 999;
+    left: -250px;
+    /* display: none; */
+    transition: left 0.5s ease;
+    user-select: none;
+}
+
+
+.sidebar2.open {
+    left: 0;
+}
+
+.sidebar2 * {
+    background-color: transparent;
+    color: #FFFAFA;
+}
+
+.settings2,
+.darkmode2,
+.loginorsignup2,
+.history2 {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+}
+
+.darkmode2 * {
+    margin-left: 15px;
+}
+
+.settings2 * {
+    margin-left: 15px;
+}
+
+
+.darkmode2:hover {
+    transform: scale(1);
+    font-weight: bold;
+}
+
+.settings2:hover {
+    transform: scale(1);
+    font-weight: bold;
+}
+
+.sidefooter2 {
+    z-index: 998;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-bottom: 80px;
+    padding-top: 20px;
+    gap: 30px;
+    cursor: pointer;
+}
+
+.recenttail2::-webkit-scrollbar {
+    width: 12px;
+    background-color: #2c8f82;
+}
+
+.recenttail2::-webkit-scrollbar-thumb {
+    background: #00665e;
+    border-radius: 50px;
+}

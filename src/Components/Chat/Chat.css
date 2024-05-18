@@ -1,14 +1,15 @@
 .chat {
     height: 100%;
     width: 100%;
-    background-color: #d4f8e4;
-    margin-top: 80px;
+    /* background-color: #d4f8e4; */
+    /* margin-top: 80px; */
     margin-bottom: 100px;
     display: flex;
     flex-direction: column;
     gap: 20px;
     align-items: center;
     justify-content: start;
+    padding-top:80px;
 
 }
 
@@ -20,10 +21,12 @@
     height: 100%;
     display: flex;
     border-radius: 5px;
-    box-shadow: 1px 2px 2px #00a193;
-    border: #00a193 solid 1.5px;
+    /* box-shadow: 1px 2px 2px #00a193; */
+    /* border: #00a193 solid 1.5px; */
     gap: 20px;
     flex-direction: column;
+    box-shadow: 1px 5px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #00a193;
 }
 
 .myres {
@@ -39,18 +42,13 @@
     gap: 10px;
 }
 
-.down:active {
-    fill: #00a193;
-}
-
-.up:active {
-    fill: #00a193;
-}
 
 .copy:active {
     fill: #00a193;
 }
-
+.copied{
+    background-color: transparent;
+}
 .mytext h1,
 .myres h1 {
     background-color: transparent;
@@ -124,8 +122,10 @@
 .skelton {
     width: 50rem;
     margin-bottom: 10px;
-    box-shadow: 0px 2px 2px #00a193;
-    border: #00a193 solid 1px;
+    /* box-shadow: 0px 2px 2px #00a193;
+    border: #00a193 solid 1px; */
+    box-shadow: 1px 5px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #00a193;
 
 }
 
@@ -144,6 +144,12 @@
 .copy:hover {
     transform: scale(1.2);
 }
+.up.red {
+    fill:#00a193;
+  }
+  .down.red {
+    fill:#00a193;
+  }
 
 
 @media (max-width: 800px) {
@@ -151,7 +157,6 @@
     .mytext,
     .response {
         width: 320px;
-        box-shadow: 0px 2px 2px #00a193;
     }
 
     .skelton {

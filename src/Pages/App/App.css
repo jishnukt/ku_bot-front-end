@@ -1,8 +1,10 @@
 *{
   padding: 0;
   margin: 0;
-  background-color: #d4f8e4;
+  /* background-color: #d4f8e4; */
   font-family: 'Montserrat', sans-serif;
+  background-color: black;
+
   
 }
 .App{

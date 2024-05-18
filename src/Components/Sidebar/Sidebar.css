@@ -119,6 +119,7 @@
   padding-bottom: 80px;
   padding-top: 20px;
   gap: 30px;
+  cursor: pointer;
 }
 
 .recenttail::-webkit-scrollbar {
