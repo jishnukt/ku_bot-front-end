@@ -12,8 +12,8 @@
     /* display: none; */
     transition: left 0.5s ease;
     user-select: none;
-}
 
+}
 
 .sidebar2.open {
     left: 0;
@@ -59,7 +59,7 @@
     justify-content: space-evenly;
     padding-bottom: 80px;
     padding-top: 20px;
-    gap: 30px;
+    gap: 10px;
     cursor: pointer;
 }
 
@@ -71,4 +71,18 @@
 .recenttail2::-webkit-scrollbar-thumb {
     background: #00665e;
     border-radius: 50px;
+}
+
+.darkmode2.active {
+    background-color: #f0f0f0;
+    color: #000;
+}
+
+.darkmode2.active .dm2 a {
+    color: #000;
+}
+
+
+.c {
+    height: 50px;
 }

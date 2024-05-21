@@ -1,8 +1,7 @@
 import React from 'react';
-import { Cog,Moon,User,MessageSquare,History,LogOut,LogIn } from 'lucide-react';
+import { Moon,User,MessageSquare,History,LogOut,LogIn } from 'lucide-react';
 import { Link } from "react-router-dom";
 import './Sidebar.css';
-import axios from 'axios'
 import { useLocation } from 'react-router-dom';
 
 function Sidebar({ isOpen ,messages,onMessageSubmit,toggleSidebar}) {

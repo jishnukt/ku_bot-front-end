@@ -16,10 +16,9 @@ function Admindislike() {
         <div className='chat'>
             {[...dislikedStrings].reverse().map((dislikedString, index) => (
                 <div className='mytext'>
-                    <User className='user_icon' style={{ width: '18px', height: '18px' }} />
                     <h1 className='text1'>{dislikedString.prompt}</h1>
-                    <Bot className='user_icon' style={{ width: '18px', height: '18px' }} />
                     <h1 className='res1'>{dislikedString.disliked}</h1>
+                    <User className='user_icon' style={{ width: '18px', height: '18px' }} />
                 </div>
             ))}
 

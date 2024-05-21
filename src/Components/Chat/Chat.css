@@ -16,8 +16,10 @@
 .mytext,
 .response {
     width: 50rem;
-    color: #2c8f82;
-    background-color: #FFFAFA;
+    /* color: #2c8f82; */
+    color:white;
+    /* background-color: #FFFAFA; */
+    background-image: linear-gradient(to right, #2c8f82, #35ac9c, #35ac9c, #2c8f82);
     height: 100%;
     display: flex;
     border-radius: 5px;
@@ -63,7 +65,7 @@
 
 .mytext .user_icon,
 .myres .user_icon {
-    background-color: #FFFAFA;
+    background-color: transparent;
     margin-top: 14px;
     position: absolute;
     margin-left: 2vw;

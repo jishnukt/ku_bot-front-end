@@ -18,10 +18,9 @@ function Adminlike() {
         <div className='chat'>
             {[...likedStrings].reverse().map((likedString, index) => (
                 <div className='mytext'>
-                    <User className='user_icon' style={{ width: '18px', height: '18px' }} />
                     <h1 className='text1'>{likedString.prompt}</h1>
-                    <Bot className='user_icon' style={{ width: '18px', height: '18px' }} />
                     <h1 className='res1'>{likedString.liked}</h1>
+                    <User className='user_icon' style={{ width: '18px', height: '18px' }} />
                 </div>
             ))}
         </div>
