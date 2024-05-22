@@ -17,7 +17,7 @@ function Login() {
       const response = await axios.post('http://192.168.18.14:3003/api/login', { email, password });
       console.log(response.data.user.fullName); 
       if (response.data.user.type === 'User') {
-        navigate('/',{ state: { email } });
+        navigate('/user',{ state: { email } });
       } else if (response.data.user.type === 'Admin') {
         navigate('/admin/chat');
       }    

@@ -9,6 +9,8 @@ function Adminsettings() {
     const [temperature, setTemperature] = useState('');
     const [top_p, setTop_p] = useState('');
     const [model, setModel] = useState('gpt-3.5-turbo-0125');
+    const [file, setFile] = useState(null); 
+
 
     useEffect(() => {
         const fetchAssistantDetails = async () => {
@@ -30,24 +32,41 @@ function Adminsettings() {
         fetchAssistantDetails();
     }, []);
 
+    const handleUpload = async (e) => {
+        e.preventDefault();
+        const formData2 = new FormData();
+        formData2.append('file', file);
+        try {
+            const response = await fetch('http://192.168.18.14:3003/api/settings', {
+                method: 'POST',
+                body: formData2 
+            });
+            if (response.ok) {
+                console.log('Upload saved successfully');
+            } else {
+                console.error('Error Uploading');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const data = {
-            botName,
-            instructions,
-            temperature: parseFloat(temperature),
-            top_p: parseFloat(top_p),
-            model, 
-        };
+        const formData = new FormData();
+        formData.append('botName', botName);
+        formData.append('instructions', instructions);
+        formData.append('temperature', parseFloat(temperature));
+        formData.append('top_p', parseFloat(top_p));
+        formData.append('model', model);
+        // formData.append('file', file);
 
         try {
             const response = await fetch('http://192.168.18.14:3003/api/settings', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
+                body: formData 
             });
             if (response.ok) {
                 console.log('Settings saved successfully');
@@ -92,11 +111,11 @@ function Adminsettings() {
                 <div className='prompt-container'>
                     <div className='search z1 fileupload' type='text' >
                         <Upload className='uploadicon' />
-                        <input className='file' type="file" name='file' />
-                        <button className='upload'>UPLOAD</button>
+                        <input className='file' type="file" name='file' onChange={(e) => setFile(e.target.files[0])} />
+                        <button className='upload' onClick={handleUpload}>Upload</button>
                     </div>
                 </div>
-                <button className='upload save' style={{ color: 'white' }} type="submit">Save</button>
+                <button className='upload save' style={{ color: 'white' }} type="submit">SAVE</button>
             </form>
 
         </div>

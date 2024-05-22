@@ -136,7 +136,7 @@ function Chat({ messages, showInitialDiv, generatedText, onMessageSubmit, hideIn
           <div className='suggestion'>
             <div className='s1' onClick={() => { onMessageSubmit('Kannur University location'); hideInitialDiv(); }}>Kannur University located</div>
             <div className='s1' onClick={() => { onMessageSubmit('Courses offered by Kannur University'); hideInitialDiv(); }}>Courses offered by University</div>
-            <div className='s1' onClick={() => { onMessageSubmit('Examination Details of Kannur University'); hideInitialDiv(); }}>Examination Details of Kannur University</div>
+            <div className='s1' onClick={() => { onMessageSubmit('Examination Details of Kannur University'); hideInitialDiv(); }}>Examination Details</div>
             <div className='s1' onClick={() => { onMessageSubmit('Registration Details of KU'); hideInitialDiv(); }}>Registration Details of KU</div>
           </div>
         </div>
