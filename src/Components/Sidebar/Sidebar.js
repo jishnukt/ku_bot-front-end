@@ -1,45 +1,52 @@
-import React from 'react';
-import { Moon,User,MessageSquare,History,LogOut,LogIn } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Moon, User, MessageSquare, History, LogOut, LogIn } from 'lucide-react';
 import { Link } from "react-router-dom";
 import './Sidebar.css';
-import { useLocation } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 
-function Sidebar({ isOpen ,messages,onMessageSubmit,toggleSidebar}) {
-  const location = useLocation();
-  const { email } = location.state || {}; // Use destructuring with default value
+// import { useLocation } from 'react-router-dom';
 
-  // const handleName = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     const response = await axios.post('http://127.0.0.1:3003/api/login', {
-  //       email: {email},
-  //       password: {password}
-  //     });
-  //     console.log(response.data.user.fullName);
-  //   } catch (error) {
-  //     console.error('Login failed:', error);
-  //   }
-  // };
+function Sidebar({ isOpen, messages, onMessageSubmit, toggleSidebar }) {
+  // const location = useLocation();
+  // const { email } = location.state || {}; // Use destructuring with default value
+  const [fullName, setFullName] = useState('');
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      if (decodedToken.userType == 'User') {
+        setFullName(decodedToken.fullName);
+      }
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    window.location.href = '/login';
+  };
+
+
 
   return (
-    
+
     <div className={`sidebar ${isOpen ? 'open' : ''}`}>
       <div className='recent'>
-        <div className='recenthead'><History className='historyicon'/>Recent</div> 
-          <div className='recenttail'>
-            {messages.map((message, index) => (
-              <div className='history' onClick={() => { onMessageSubmit(message); toggleSidebar(); }} key={index}>
-                <MessageSquare className='messagesquare'></MessageSquare>
-                <p className='set set2'>{message}</p>
-              </div>
-            ))}
-          </div>
-        </div> 
+        <div className='recenthead'><History className='historyicon' />Recent</div>
+        <div className='recenttail'>
+          {messages.map((message, index) => (
+            <div className='history' onClick={() => { onMessageSubmit(message); toggleSidebar(); }} key={index}>
+              <MessageSquare className='messagesquare'></MessageSquare>
+              <p className='set set2'>{message}</p>
+            </div>
+          ))}
+        </div>
+      </div>
       <div className='sidefooter'>
-      {email ? (
+        {fullName ? (
           <div className='loginorsignup'>
             <User className='usericon1' />
-            <p className='set'>{email}</p>
+            <p className='set'>{fullName}</p>
           </div>
         ) : (
           <div className='loginorsignup'>
@@ -47,8 +54,8 @@ function Sidebar({ isOpen ,messages,onMessageSubmit,toggleSidebar}) {
             <p className='set'>Guest User</p>
           </div>
         )}
-      {email ? (
-          <div className='loginorsignup'>
+        {fullName ? (
+          <div className='loginorsignup' onClick={handleLogout}>
             <LogOut className='usericon1' />
             <p className='set'>Logout</p>
           </div>

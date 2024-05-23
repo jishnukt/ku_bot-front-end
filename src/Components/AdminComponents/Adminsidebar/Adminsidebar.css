@@ -74,15 +74,18 @@
 }
 
 .darkmode2.active {
-    background-color: #f0f0f0;
-    color: #000;
+    background-color: #00665e;
+    color: white;
 }
 
-.darkmode2.active .dm2 a {
-    color: #000;
-}
+/* .darkmode2.active .dm2 a {
+    color: white;
+} */
 
 
 .c {
     height: 50px;
+}
+.r{
+    padding-left: 15px;
 }

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { User, Bot} from 'lucide-react';
+import { User } from 'lucide-react';
 import './Adminlike.css'
-
 
 function Adminlike() {
     const [likedStrings, setLikedStrings] = useState([]);
@@ -13,11 +12,10 @@ function Adminlike() {
             .catch(error => console.error('Error fetching liked strings:', error));
     }, []);
 
-
     return (
         <div className='chat'>
-            {[...likedStrings].reverse().map((likedString, index) => (
-                <div className='mytext'>
+            {likedStrings.slice().reverse().map((likedString, index) => (
+                <div className='mytext' key={index}>
                     <h1 className='text1'>{likedString.prompt}</h1>
                     <h1 className='res1'>{likedString.liked}</h1>
                     <User className='user_icon' style={{ width: '18px', height: '18px' }} />
@@ -27,4 +25,4 @@ function Adminlike() {
     )
 }
 
-export default Adminlike
+export default Adminlike;

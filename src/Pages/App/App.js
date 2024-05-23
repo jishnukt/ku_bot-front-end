@@ -1,9 +1,11 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Navbar from '../../Components/Navbar/Navbar';
 import Chat from '../../Components/Chat/Chat';
 import Prompt from '../../Components/Prompt/Prompt';
 import Sidebar from '../../Components/Sidebar/Sidebar';
+import { jwtDecode } from 'jwt-decode';
+
 
 
 
@@ -12,10 +14,22 @@ function App() {
   const [messages, setMessages] = useState([]);
   const [showInitialDiv, setShowInitialDiv] = useState(true);
   const [generatedText, setGeneratedText] = useState('');
+  // const [FullName, setFullName] = useState('');
+
 
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
   };
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
+  //   if (token) {
+  //     const decodedToken = jwtDecode(token);
+  //     setFullName(decodedToken.fullName);
+  //     console.log(decodedToken.fullName)
+  //   }
+  // }, []);
+
 
   const handleMessageSubmit = async (text) => {
     setMessages([...messages, text]);
@@ -44,10 +58,25 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar toggleSidebar={toggleSidebar} />
-      <Sidebar isOpen={sidebarVisible} messages={messages} onMessageSubmit={handleMessageSubmit} toggleSidebar={toggleSidebar} />
-      <Chat messages={messages} showInitialDiv={showInitialDiv} generatedText={generatedText} onMessageSubmit={handleMessageSubmit} hideInitialDiv={hideInitialDiv} />
-      <Prompt onMessageSubmit={handleMessageSubmit} hideInitialDiv={hideInitialDiv} />
+      <Navbar
+        toggleSidebar={toggleSidebar}
+      />
+      <Sidebar
+        isOpen={sidebarVisible}
+        messages={messages}
+        onMessageSubmit={handleMessageSubmit}
+        toggleSidebar={toggleSidebar}
+      />
+      <Chat
+        messages={messages}
+        showInitialDiv={showInitialDiv}
+        generatedText={generatedText}
+        onMessageSubmit={handleMessageSubmit}
+        hideInitialDiv={hideInitialDiv}
+      />
+      <Prompt
+        onMessageSubmit={handleMessageSubmit}
+        hideInitialDiv={hideInitialDiv} />
     </div>
   );
 }
