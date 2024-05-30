@@ -38,7 +38,7 @@ function Prompt({ onMessageSubmit, hideInitialDiv }) {
         />
         <div className='icon-container'>      
           <SquareArrowUp
-            style={{color:'#00a193',backgroundColor:'transparent',cursor:'pointer'}}
+            style={{color:'white',backgroundColor:'transparent',cursor:'pointer'}}
             onClick={handleArrowClick}
           />
         </div>

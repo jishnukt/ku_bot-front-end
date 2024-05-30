@@ -5,7 +5,6 @@ import App from './Pages/App/App';
 import Login from './Pages/Login/Login'
 import Signup from './Pages/Signup/Signup'
 import Admin from './Pages/Admin/Admin';
-import User from './Pages/User/User'
 import reportWebVitals from './reportWebVitals';
 import {createBrowserRouter,RouterProvider,} from "react-router-dom";
 
@@ -26,10 +25,6 @@ const router = createBrowserRouter([
   {
     path: "admin/*",
     element:<Admin/>,
-  },
-  {
-    path: "user",
-    element:<User/>,
   },
 ]);
 

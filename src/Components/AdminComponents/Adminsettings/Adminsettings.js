@@ -35,10 +35,11 @@ function Adminsettings() {
         
         try {
             const token = localStorage.getItem('token');
+            // console.log(token)
             const response = await fetch('http://192.168.18.14:3003/api/settings', {
                 method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${token}`,
+                    // 'Authorization': `Bearer ${token}`,
                 },
                 body: formData,
             });

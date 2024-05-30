@@ -33,7 +33,7 @@ function Admin() {
 
   return (
     <div className='admin'>
-      <Adminnav toggleSidebar={toggleSidebar} />
+      <Adminnav toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen}/>
       <Adminsidebar isOpen={isSidebarOpen} />
       <div className="admincontents">
         <Routes path='/admin'>

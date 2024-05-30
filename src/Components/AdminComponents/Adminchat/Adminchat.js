@@ -1,17 +1,53 @@
 import React, { useState, useEffect } from 'react';
 import Chat from '../../../Components/Chat/Chat'
 import Prompt from '../../../Components/Prompt/Prompt'
+import { jwtDecode } from 'jwt-decode';
+
 
 function Adminchat() {
 
     const [messages, setMessages] = useState([]);
     const [showInitialDiv, setShowInitialDiv] = useState(true);
     const [generatedText, setGeneratedText] = useState('');
+    const [threadId, setThreadId] = useState(null);
+    const [userid, setUserid] = useState('');
+
+
+    useEffect(() => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        const decodedToken = jwtDecode(token);
+        setUserid(decodedToken.id);
+      }
+    }, []);
   
   
   
     const handleMessageSubmit = async (text) => {
       setMessages([...messages, text]);
+  
+      if (!threadId) {
+        try {
+          const response = await fetch('http://192.168.18.14:3003/api/create-thread',
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ userid }),
+            });
+          if (!response.ok) {
+            throw new Error(`Failed to create thread: ${response.statusText}`);
+          }
+          const data = await response.json();
+          console.log('Thread created with ID:', data.threadId);
+          setThreadId(data.threadId);
+        } catch (error) {
+          console.error('Error creating thread:', error);
+          return;
+        }
+      }
+  
       try {
         const response = await fetch('http://192.168.18.14:3003/api/getGeneratedText', {
           method: 'POST',
@@ -24,7 +60,6 @@ function Adminchat() {
           throw new Error(`Failed to send message: ${response.statusText}`);
         }
         const data = await response.json();
-        // console.log('Data received from API:', data.text);
         setGeneratedText(data.text);
       } catch (error) {
         console.error('Error sending message:', error);
@@ -40,7 +75,6 @@ function Adminchat() {
     <div>
     <Chat messages={messages} showInitialDiv={showInitialDiv} generatedText={generatedText} onMessageSubmit={handleMessageSubmit} hideInitialDiv={hideInitialDiv} />
     <Prompt onMessageSubmit={handleMessageSubmit} hideInitialDiv={hideInitialDiv} />
-
     </div>
   )
 }

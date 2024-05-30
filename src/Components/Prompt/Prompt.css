@@ -16,7 +16,8 @@
   width: 45rem;
   min-height: 2.5rem;
   border-radius: 5px;
-  background-color: #FFFAFA;
+  /* background-color: #FFFAFA; */
+  background-image: linear-gradient(to right, #2c8f82, #35ac9c, #35ac9c, #2c8f82);
   border-style: solid;
   border: #2c8f82 solid 1px;
   margin-left: 30px;
@@ -29,11 +30,13 @@
 }
 
 .search::placeholder {
-  color: #2c8f82;
+  /* color: #2c8f82; */
+  color:white;
 }
 
 input[type="text"] {
   padding: 0px 40px;
+  color:white;
 }
 
 .icon-container {
@@ -41,7 +44,8 @@ input[type="text"] {
   top: 55%;
   right: 50px;
   transform: translateY(-50%);
-  background-color: #FFFAFA;
+  /* background-color: #FFFAFA; */
+  background-color: transparent;
 }
 
 

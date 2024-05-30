@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Moon, User, MessageSquare, History, LogOut, LogIn } from 'lucide-react';
+import { User, MessageSquare, History, LogOut, LogIn } from 'lucide-react';
 import { Link } from "react-router-dom";
 import './Sidebar.css';
 import { jwtDecode } from 'jwt-decode';
+import DarkMode from '../DarkMode/DarkMode';
 
-// import { useLocation } from 'react-router-dom';
-
-function Sidebar({ isOpen, messages, onMessageSubmit, toggleSidebar }) {
-  // const location = useLocation();
-  // const { email } = location.state || {}; // Use destructuring with default value
+function Sidebar({ isOpen, threads, onThreadClick }) {
   const [fullName, setFullName] = useState('');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
       const decodedToken = jwtDecode(token);
-      if (decodedToken.userType == 'User') {
+      if (decodedToken.userType === 'User') {
         setFullName(decodedToken.fullName);
       }
     }
@@ -26,20 +23,33 @@ function Sidebar({ isOpen, messages, onMessageSubmit, toggleSidebar }) {
     window.location.href = '/login';
   };
 
-
-
   return (
-
     <div className={`sidebar ${isOpen ? 'open' : ''}`}>
       <div className='recent'>
-        <div className='recenthead'><History className='historyicon' />Recent</div>
-        <div className='recenttail'>
-          {messages.map((message, index) => (
-            <div className='history' onClick={() => { onMessageSubmit(message); toggleSidebar(); }} key={index}>
-              <MessageSquare className='messagesquare'></MessageSquare>
-              <p className='set set2'>{message}</p>
+        <div className='recenthead'>
+          <History className='historyicon' />Recent
+        </div>
+        <div className="hh">
+          {fullName ? (
+            <div className='recenttail'>
+              {
+                Array.isArray(threads) && threads.length > 0 ? (
+                  threads.map((thread, index) => (
+                    <div className='history' onClick={() => onThreadClick(thread)} key={thread.threadId}>
+                      <MessageSquare className='messagesquare' />
+                      <p className='set set2'>
+                        {thread.data.prompt.length > 0 ? thread.data.prompt[0] : "No prompts yet"}
+                      </p>
+                    </div>
+                  ))
+                ) : (
+                  <p>No Chat History Available</p>
+                )
+              }
             </div>
-          ))}
+          ) : (
+            <p className='set2 f'>No History for Guest Users</p>
+          )}
         </div>
       </div>
       <div className='sidefooter'>
@@ -62,17 +72,16 @@ function Sidebar({ isOpen, messages, onMessageSubmit, toggleSidebar }) {
         ) : (
           <div className='loginorsignup'>
             <LogIn className='usericon1' />
-            <p className='set'><Link style={{ textDecoration: 'none' }} to='/Login'>Login / Register</Link></p>
+            <p className='set'>
+              <Link style={{ textDecoration: 'none' }} to='/Login'>Login / Register</Link>
+            </p>
           </div>
         )}
-        <div className='darkmode' >
+        {/* <div className='darkmode'>
           <Moon />
           <p className='dm'>Dark Mode</p>
-        </div>
-        {/* <div className='settings'>
-          <Cog />
-          <p className='set'>Settings</p>
         </div> */}
+        <DarkMode />
       </div>
     </div>
   );

@@ -1,16 +1,16 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { User, Bot, ThumbsUp, ThumbsDown, Copy, Check } from 'lucide-react';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css'
-import "./Chat.css"
+import 'react-loading-skeleton/dist/skeleton.css';
+import "./Chat.css";
 
-function Chat({ messages, showInitialDiv, generatedText, onMessageSubmit, hideInitialDiv }) {
+function Chat({ messages, showInitialDiv, generatedText, onMessageSubmit, hideInitialDiv, currentThread }) {
   const [generatedHistory, setGeneratedHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [likedIndexes, setLikedIndexes] = useState([]);
-  const [dislikedIndexes, setDisLikedIndexes] = useState([]);
+  const [dislikedIndexes, setDislikedIndexes] = useState([]);
   const [likedMessages, setLikedMessages] = useState({});
-  const [dislikedMessages, setDisLikedMessages] = useState({});
+  const [dislikedMessages, setDislikedMessages] = useState({});
   const [copiedIndexes, setCopiedIndexes] = useState({});
 
   const chatEndRef = useRef(null);
@@ -35,8 +35,10 @@ function Chat({ messages, showInitialDiv, generatedText, onMessageSubmit, hideIn
   }, [messages, generatedHistory]);
 
   function formatMessage(message) {
+    if (typeof message !== 'string') {
+      return null;
+    }
     const withoutAsterisks = message.replace(/\*\*/g, '');
-    // const withoutBrackets = withoutAsterisks.replace(/\【.*?\】/g, '');
     const withoutBrackets = withoutAsterisks.replace(/【.*?】/g, '');
     return withoutBrackets.split('\n').map((line, index) => (
       <React.Fragment key={index}>
@@ -92,9 +94,9 @@ function Chat({ messages, showInitialDiv, generatedText, onMessageSubmit, hideIn
         .then(response => {
           if (response.ok) {
             console.log('DisLike Sent successfully');
-            setDisLikedIndexes([...dislikedIndexes, index]);
-            setDisLikedMessages(prevDisLikedMessages => ({
-              ...prevDisLikedMessages,
+            setDislikedIndexes([...dislikedIndexes, index]);
+            setDislikedMessages(prevDislikedMessages => ({
+              ...prevDislikedMessages,
               [index]: true,
             }));
           } else {
@@ -118,66 +120,100 @@ function Chat({ messages, showInitialDiv, generatedText, onMessageSubmit, hideIn
           ...prevCopiedIndexes,
           [index]: true,
         }));
-      })
+      }) 
       .catch(error => {
         console.error('Error copying text:', error);
       });
   };
 
-
-
-  return (
-    <div className='chat'>
-
-      {showInitialDiv && (
-        <div className='initial'>
-          <Bot className='initial_icon' style={{ width: '100px', height: '100px' }} />
-          <h2>How can I help you today?</h2>
-          <div className='suggestion'>
-            <div className='s1' onClick={() => { onMessageSubmit('Kannur University location'); hideInitialDiv(); }}>Kannur University located</div>
-            <div className='s1' onClick={() => { onMessageSubmit('Courses offered by Kannur University'); hideInitialDiv(); }}>Courses offered by University</div>
-            <div className='s1' onClick={() => { onMessageSubmit('Examination Details of Kannur University'); hideInitialDiv(); }}>Examination Details</div>
-            <div className='s1' onClick={() => { onMessageSubmit('Registration Details of KU'); hideInitialDiv(); }}>Registration Details of KU</div>
-          </div>
-        </div>
-      )}
-      {messages.map((message, index) => (
+  const renderChatContent = () => {
+    if (currentThread) {
+      return currentThread.prompt.map((prompt, index) => (
         <React.Fragment key={index}>
           <div className='mytext'>
             <User className='user_icon' style={{ width: '18px', height: '18px' }} />
-            <h1 className='text1'>{message}</h1>
+            <h1 className='text1'>{prompt}</h1>
           </div>
 
-          {generatedHistory[index] && (
+          {currentThread.response[index] && (
             <div className='response'>
               <div className='myres'>
                 <Bot className='user_icon' style={{ width: '18px', height: '18px' }} />
-                <h1 className='res1'>{formatMessage(generatedHistory[index])}</h1>
+                <h1 className='res1'>{formatMessage(currentThread.response[index])}</h1>
               </div>
-              <div className='thumbs'>
-                <ThumbsUp className={likedMessages[index] ? 'up red' : 'up'} onClick={() => handleThumbsUp(index)} />
+              {/* <div className='thumbs'>
+                <ThumbsUp className={likedIndexes.includes(index) ? 'up red' : 'up'} onClick={() => handleThumbsUp(index)} />
                 {copiedIndexes[index] ? (
                   <span className="copied">
                     <Check style={{ backgroundColor: 'white' }} />
                   </span>
                 ) : (
                   <Copy className='copy' onClick={() => handleCopy(index)} />
-                )}                
-                <ThumbsDown className={dislikedMessages[index] ? 'up red' : 'down'} onClick={() => handleThumbsDown(index)} />
-              </div>
+                )}
+                <ThumbsDown className={dislikedIndexes.includes(index) ? 'up red' : 'down'} onClick={() => handleThumbsDown(index)} />
+              </div> */}
             </div>
           )}
         </React.Fragment>
-      ))}
-      {isLoading && (
-        <div className="loader">
-          <SkeletonTheme className="skelton" baseColor="white" highlightColor="#35ac9c" height={100} >
-            <p>
-              <Skeleton className="skelton" count={1} />
-            </p>
-          </SkeletonTheme>
+      ));
+    }
+    
+    return messages.map((message, index) => (
+      <React.Fragment key={index}>
+        <div className='mytext'>
+          <User className='user_icon' style={{ width: '18px', height: '18px' }} />
+          <h1 className='text1'>{message}</h1>
+        </div>
+
+        {isLoading && index === messages.length - 1 && (
+          <div className='loader'>
+            <SkeletonTheme className="skelton"  baseColor="#d4f8e4" highlightColor="#35ac9c" height={100}>
+              <Skeleton className='skelton' count={1} />
+            </SkeletonTheme>
+          </div>
+        )}
+
+        {generatedHistory[index] && (
+          <div className='response'>
+            <div className='myres'>
+              <Bot className='user_icon' style={{ width: '18px', height: '18px' }} />
+              <h1 className='res1'>{formatMessage(generatedHistory[index])}</h1>
+            </div>
+            <div className='thumbs'>
+              <ThumbsUp className={likedIndexes.includes(index) ? 'up red' : 'up'} onClick={() => handleThumbsUp(index)} />
+              {copiedIndexes[index] ? (
+                <span className="copied">
+                  <Check style={{ backgroundColor: 'white' }} />
+                </span>
+              ) : (
+                <Copy className='copy' onClick={() => handleCopy(index)} />
+              )}
+              <ThumbsDown className={dislikedIndexes.includes(index) ? 'up red' : 'down'} onClick={() => handleThumbsDown(index)} />
+            </div>
+          </div>
+        )}
+      </React.Fragment>
+    ));
+  };
+
+  return (
+    <div className='chat'>
+      {showInitialDiv && (
+        <div className='initial'>
+          <Bot className='initial_icon' style={{ width: '100px', height: '100px' }} />
+          <h2>How can I help you today?</h2>
+          <div className='suggestion'>
+            {['Kannur University location', 'Courses offered by Kannur University', 'Examination Details', 'Registration Details of KU'].map((suggestion, index) => (
+              <div key={index} className='s1' onClick={() => { onMessageSubmit(suggestion); hideInitialDiv(); }}>
+                {suggestion}
+              </div>
+            ))}
+          </div>
         </div>
       )}
+
+      {renderChatContent()}
+
       <div ref={chatEndRef}></div>
     </div>
   );

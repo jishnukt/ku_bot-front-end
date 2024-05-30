@@ -9,7 +9,9 @@
     /* background-color: red; */
     gap: 20px
 }
-
+.v{
+    margin-left: 120px;
+}
 .bot {
     height: 10rem;
     width: 10rem;

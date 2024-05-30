@@ -2,6 +2,8 @@ import React, { forwardRef } from 'react';
 import { Moon, ThumbsUp, ThumbsDown, MessageCircle, Settings, LogOut } from 'lucide-react';
 import './Adminsidebar.css';
 import { Link, useLocation } from "react-router-dom";
+import DarkMode from '../../DarkMode/DarkMode';
+
 
 const Adminsidebar = forwardRef(({ isOpen }, ref) => {
   const location = useLocation();
@@ -37,9 +39,8 @@ const Adminsidebar = forwardRef(({ isOpen }, ref) => {
             <LogOut />
             <p className='dm2 r' onClick={handleLogout}>Sign Out</p>
           </div>
-          <div className={`darkmode2 c ${isActive('/login') ? 'active' : ''}`}>
-            <Moon className='c' />
-            <p className='dm2'><Link style={{ textDecoration: 'none' }} to=''>Dark Mode</Link></p>
+          <div className="">
+          <DarkMode/>
           </div>
         </div>
       </div>

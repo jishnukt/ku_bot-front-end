@@ -3,12 +3,30 @@
   margin: 0;
   /* background-color: #d4f8e4; */
   font-family: 'Montserrat', sans-serif;
-  background-color: black;
-
-  
+  /* background-color: black; */
 }
 .App{
   display: flex;
   flex-direction: column;
 }
+
+body{
+  background-color: var(--background-color);
+}
+
+
+body[data-theme='light'] {
+  --background-color: #d4f8e4;
+}
+
+body[data-theme='dark'] {
+  --background-color: black;
+}
+
+/* .App { 
+  background-color: var(--background-color);
+} */
+
+
+
 

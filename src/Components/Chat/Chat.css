@@ -13,6 +13,7 @@
 
 }
 
+
 .mytext,
 .response {
     width: 50rem;
@@ -28,7 +29,7 @@
     gap: 20px;
     flex-direction: column;
     box-shadow: 1px 5px 15px rgba(0, 0, 0, 0.1);
-    border: 1px solid #00a193;
+    /* border: 1px solid #00a193; */
 }
 
 .myres {
@@ -96,8 +97,10 @@
 
 .s1 {
     width: 40%;
-    background-color: #FFFAFA;
+    /* background-color: #FFFAFA; */
+    background-image: linear-gradient(to right, #2c8f82, #35ac9c, #35ac9c, #2c8f82);
     height: 80px;
+    color:white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -126,8 +129,8 @@
     margin-bottom: 10px;
     /* box-shadow: 0px 2px 2px #00a193;
     border: #00a193 solid 1px; */
-    box-shadow: 1px 5px 15px rgba(0, 0, 0, 0.1);
-    border: 1px solid #00a193;
+    box-shadow: 2px  5px 15px rgba(0, 0, 0, 0.1);
+    /* border: 1px solid #00a193; */
 
 }
 

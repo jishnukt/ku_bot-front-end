@@ -11,3 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* :root{
+  --body_background:red;
+  --body_color: red;
+  --link_color:yellow;
+}
+[dark-theme="dark"]{
+  --body_background:black;
+  --body_color: green;
+  --link_color:yellow;
+} */
