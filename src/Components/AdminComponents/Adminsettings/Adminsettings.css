@@ -4,9 +4,10 @@
     font-weight: bolder;
     padding-bottom: 8px;
 }
-.instructions{
+
+.instructions {
     min-height: 10rem;
-    width:45rem ;
+    width: 45rem;
     /* overflow-wrap: normal; */
     padding: 15px 40px;
 }
@@ -17,8 +18,9 @@
     height: 2.8rem;
     padding: 0px 40px;
 }
-option{
-    background-color:#00a193;
+
+option {
+    background-color: #00a193;
 }
 
 .fileupload {
@@ -36,10 +38,11 @@ option{
     height: 1rem;
     padding: 40px;
     background-color: transparent;
-    
+
 }
+
 input[type="range"] {
-width:50rem;
+    width: 50rem;
 }
 
 .uploadicon {
@@ -47,36 +50,79 @@ width:50rem;
     width: 2rem;
     background-color: transparent;
 }
-.range{
+
+.range {
     color: #00a193;
 }
-.z1{
+
+.z1 {
     margin-bottom: 40px;
     font-size: 1rem;
-    color:white;
+    color: white;
 }
 
 
 .upload {
-    background-color: #00a193;
+    /* background-color: #00a193; */
     width: 10rem;
     height: 2rem;
     margin-top: 10px;
     border-radius: 4px;
     padding: 0px 40px;
     border: solid 2px #00a193;
-    color: white;
-    background-image: linear-gradient(to right, #2c8f82, #35ac9c, #35ac9c, #2c8f82);
+    color: #00a193;
+    /* background-image: linear-gradient(to right, #2c8f82, #35ac9c, #35ac9c, #2c8f82); */
     font-weight: bold;
 }
+
 .upload:hover {
     transform: scale(1.05);
 }
-form{
+
+form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.alert{
+    padding-top: 10px;
+}
+
+.ff {
+    width: 50rem;
+    /* min-width: 50rem; */
+    padding: 10px;
+    height: 100%;
+}
+
+th {
+    /* width:400px    */
+}
+
+td,
+.fileicon,
+.trashicon {
+    padding: 5px;
+    padding-bottom: 15px;
+}
+
+tbody {
+    font-size: 1rem;
+
+}
+
+.fileicon,
+.trashicon {
+    height: 1rem;
+    /* margin-left: 50px; */
+}
+.trashicon{
+    cursor: pointer;
+}
+.trashicon:hover{
+    transform:scale(1.2);
+    font-weight: bolder;
 }
 
 @media (max-width: 800px) {
@@ -92,11 +138,39 @@ form{
         width: 12rem;
 
     }
-    .instructions{
+
+    .instructions {
         width: 260px;
 
     }
+
+    .ff {
+        width:13rem;
+    }
+
     input[type="range"] {
-        width:340px;
-        }
+        width: 340px;
+    }
+
+    td,
+    .fileicon,
+    .trashicon {
+        padding: 1px;
+        padding-bottom: 10px;
+    }
+
+    tbody {
+        font-size: 0.7rem;
+
+    }
+
+    .fileicon,
+    .trashicon {
+        height: 1rem;
+        /* margin-left: 50px; */
+    }
+
+    .z1 {
+        font-size: 0.8rem;
+    }
 }

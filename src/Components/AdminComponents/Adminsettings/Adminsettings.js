@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Adminsettings.css';
-import { Upload } from 'lucide-react';
+import { Upload,File,Trash2 } from 'lucide-react';
 
 function Adminsettings() {
     const [botName, setBotName] = useState('');
@@ -8,7 +8,11 @@ function Adminsettings() {
     const [temperature, setTemperature] = useState('');
     const [top_p, setTop_p] = useState('');
     const [model, setModel] = useState('gpt-3.5-turbo-0125');
-    const [file, setFile] = useState(null); 
+    const [file, setFile] = useState(null);
+    const [fileInfos, setFileInfos] = useState([]);
+    const [message, setMessage] = useState('');
+
+
 
     useEffect(() => {
         const fetchAssistantDetails = async () => {
@@ -20,6 +24,8 @@ function Adminsettings() {
                 setTemperature(data.temperature);
                 setTop_p(data.top_p);
                 setModel(data.model);
+                setFileInfos(data.fileInfos);
+
             } catch (error) {
                 console.error('Error fetching assistant details:', error);
             }
@@ -32,7 +38,7 @@ function Adminsettings() {
         e.preventDefault();
         const formData = new FormData();
         formData.append('file', file);
-        
+
         try {
             const token = localStorage.getItem('token');
             // console.log(token)
@@ -45,8 +51,11 @@ function Adminsettings() {
             });
             if (response.ok) {
                 console.log('Upload saved successfully');
+                setMessage('Upload saved successfully');
+
             } else {
                 console.error('Error uploading');
+                setMessage('Error uploading');
             }
         } catch (error) {
             console.error('Error:', error);
@@ -76,10 +85,30 @@ function Adminsettings() {
             } else {
                 console.error('Error saving settings');
             }
+            window.location.reload();
         } catch (error) {
             console.error('Error:', error);
         }
     };
+
+
+    const handleDelete = async (id) => {
+        try {
+            const response = await fetch(`http://192.168.18.14:3003/api/file/${id}`, {
+                method: 'DELETE',
+            });
+            if (response.ok) {
+                console.log(`File ${id} deleted successfully`);
+                setFileInfos(fileInfos.filter(file => file.id !== id));
+            } else {
+                console.error('Error deleting file');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+    
 
     return (
         <div className='chat'>
@@ -114,9 +143,33 @@ function Adminsettings() {
                         <Upload className='uploadicon' />
                         <input className='file' type="file" name='file' onChange={(e) => setFile(e.target.files[0])} />
                         <button className='upload' onClick={handleUpload}>Upload</button>
+                        {message && <p className='alert'>{message}</p>}
                     </div>
                 </div>
-                <button className='upload save' style={{ color: 'white' }} type="submit">SAVE</button>
+                <div className='prompt-container '>
+                        {/* <h2>File Information</h2> */}
+                        <table className='search z1 ff'>
+                            {/* <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Usage Bytes</th>
+                                    <th>Created At</th>
+                                </tr>
+                            </thead> */}
+                            <tbody>
+                                {fileInfos.map(file => (
+                                    <tr key={file.id}>
+                                        <File className='fileicon'/>
+                                        <td>{file.id}</td>
+                                        {/* <td>{file.usage_bytes}</td> */}
+                                        <td>{new Date(file.created_at * 1000).toLocaleString()} </td>
+                                        <Trash2 className='trashicon' onClick={() => handleDelete(file.id)}/>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                </div>
+                <button className='upload save' style={{ color: 'white', background: " #00a193" }} type="submit">SAVE</button>
             </form>
         </div>
     );
