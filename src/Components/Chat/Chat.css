@@ -46,8 +46,8 @@
 }
 
 
-.copy:active {
-    fill: #00a193;
+.copied:active {
+    /* fill: white; */
 }
 .copied{
     background-color: transparent;
@@ -150,10 +150,10 @@
     transform: scale(1.2);
 }
 .up.red {
-    fill:#00a193;
+    fill: #d4f8e4;
   }
   .down.red {
-    fill:#00a193;
+    fill:#d4f8e4;
   }
 
 

@@ -183,7 +183,7 @@ function Chat({ messages, showInitialDiv, generatedText, onMessageSubmit, hideIn
               <ThumbsUp className={likedIndexes.includes(index) ? 'up red' : 'up'} onClick={() => handleThumbsUp(index)} />
               {copiedIndexes[index] ? (
                 <span className="copied">
-                  <Check style={{ backgroundColor: 'white' }} />
+                  <Check/>
                 </span>
               ) : (
                 <Copy className='copy' onClick={() => handleCopy(index)} />
